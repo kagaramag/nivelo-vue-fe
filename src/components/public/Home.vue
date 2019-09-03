@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="post-link">
-      <a href="./profile/#create">What's on your mind?</a>
+      <a href="./profile/#create">To create a post, go to your profile.</a>
     </div>
     <PostsComponent></PostsComponent>
   </div>
@@ -24,13 +24,15 @@ export default {
 .post-link {
   margin-bottom: 20px !important;
   border-radius: 0 !important;
-  border: 5px solid #ececec;
-  margin: auto 0%;
+  border: 5px solid #bdbdbd;
+  margin: 0 auto;
+  background: #ffffff;
   padding: 2%;
-  width: 100%;
+  width: 96%;
   position: relative;
 }
 .post-link a {
   display: block;
+  text-align: center;
 }
 </style>

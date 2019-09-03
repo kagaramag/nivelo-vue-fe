@@ -1,19 +1,29 @@
 <template>
   <div class="profile">
-    <profile-card></profile-card>
+    <profile-card :profile="profile"></profile-card>
     <profile-create-post></profile-create-post>
     <profile-posts></profile-posts>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     ProfileCard: () => import("./ProfileCard"),
     ProfileCreatePost: () => import("./ProfileCreatePost"),
     ProfilePosts: () => import("./ProfilePosts")
   },
-  name: "profile"
+  name: "profile",
+  mounted() {
+    this.$store.dispatch("GET_PROFILE");
+  },
+  computed: {
+    profile() {
+      return this.$store.getters.profile;
+    },
+    ...mapGetters(["profile"])
+  }
 };
 </script>
 

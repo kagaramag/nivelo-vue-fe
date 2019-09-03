@@ -2,23 +2,55 @@
   <div class="row">
     <div class="card">
       <div class="card-body">
-        <textarea>Type and share</textarea>
-      </div>
-      <div>
-        <button :click="savePost" class="btn bg-primary text-light">Save</button>
-        <!-- <button class="btn bg-light text-dark">Attach</button>
-        <button class="btn bg-light text-dark">Cancel</button>-->
+        <form>
+          <div>
+            <input
+              type="text"
+              v-model.lazy="post.title"
+              value="Galaxy of John Doe"
+              placeholder="Title"
+            />
+          </div>
+          <div>
+            <textarea
+              v-model.lazy="post.body"
+              placeholder="Write your post..."
+              value="Galaxy of John Doe"
+            >Type content</textarea>
+          </div>
+          <div>
+            <span class="float-right">
+              <button v-on:click.prevent="save" class="btn bg-primary text-light">Post</button>
+            </span>
+          </div>
+          <div id="preview">
+            <b>{{post.title}}</b>
+            <br />
+            {{post.body}}
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
+  data() {
+    return {
+      post: {
+        title: "",
+        body: "",
+        description: "Just lorem ipsum"
+      }
+    };
+  },
   name: "ProfileCreatePost",
-
   methods: {
-    ...mapActions(["savePost"])
+    save() {
+      this.CREATE_POST(this.post);
+    },
+    ...mapActions(["CREATE_POST"])
   }
 };
 </script>
@@ -35,9 +67,15 @@ export default {
 .card .btn {
   margin: 5px;
 }
-.card textarea {
+form {
   width: 100%;
-  padding: 0%;
+}
+form input[type="text"],
+form textarea {
+  width: 100%;
+  margin: 0 0 10px 0;
   border: none;
+  border-bottom: 1px solid #cdcdcd !important;
+  padding: 15px auto;
 }
 </style>

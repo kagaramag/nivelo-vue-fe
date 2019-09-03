@@ -7,7 +7,10 @@
             <img src="../../assets/images/profile.png" />
           </div>
         </div>
-        <h5 class="center-align">@jokerjames</h5>
+        <div class="center-align">
+          <h3 class="capitalize bold">{{profile.lastName}} {{profile.firstName}}</h3>
+          <h5>{{profile.username?`@${profile.username}`:''}}</h5>
+        </div>
         <profile-nav></profile-nav>
       </div>
     </div>
@@ -18,7 +21,8 @@ export default {
   name: "ProfileCard",
   components: {
     ProfileNav: () => import("./ProfileNav")
-  }
+  },
+  props: ["profile"]
 };
 </script>
 

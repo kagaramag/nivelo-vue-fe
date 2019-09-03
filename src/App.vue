@@ -1,7 +1,9 @@
 <!-- eslint-disable vue/no-v-html -->
 <template>
   <div id="app">
-    <HeaderComponent></HeaderComponent>
+    <div v-if="$route.path !== '/register' && $route.path !== '/login'">
+      <HeaderComponent></HeaderComponent>
+    </div>
     <div class="container">
       <div class="row">
         <div class="col">

@@ -1,18 +1,30 @@
 import axios from 'axios'
 
-const baseUrl = 'https://newsapi.org/v2/'
-const apiKey = 'apiKey=f73ab402dd914bb8bfc74c513c08dc6e'
+const baseUrl = 'http://localhost:3000/api/v1'
 
 class AxiosHelper {
-  static get = (path, config = {}) => {
+  static get = (path) => {
     return new Promise((resolve, reject) => {
       return axios
-        .get(`${baseUrl}/${path}`)
+        .get(`${baseUrl}${path}`)
         .then(response => {
           resolve(response)
         })
         .catch(error => {
           reject(error)
+        })
+    })
+  }
+
+  static post = (path, data) => {
+    return new Promise((resolve, reject) => {
+      return axios
+        .post(`${baseUrl}${path}`, data)
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error.response.data.errors)
         })
     })
   }

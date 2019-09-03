@@ -2,17 +2,23 @@
   <div class="row">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">What's on your mind?</h5>
-        <div class="card-text">
-          <textarea>type and share</textarea>
-        </div>
+        <h5 class="card-title">What's on your mindf?</h5>
+        <form>
+          <div>
+            <input type="text" v-model="title" />
+          </div>
+          <div>
+            <textarea v-model="body">Type content</textarea>
+          </div>
 
-        <div>
-          <span class="float-right">
-            <a href="./posts" class="button primary">Post</a>
-            <a href="#" class="card-link">Cancel</a>
-          </span>
-        </div>
+          <div>
+            <span class="float-right">
+              <a href="./posts" class="button primary">Post</a>
+              <a href="#" class="card-link">Cancel</a>
+            </span>
+          </div>
+          <div id="preview">{{body}}</div>
+        </form>
       </div>
     </div>
   </div>
@@ -22,16 +28,8 @@ export default {
   name: "posts",
   data() {
     return {
-      posts: [
-        {
-          id: 1,
-          name: "James",
-          handle: "@jokerjames",
-          img: "https://semantic-ui.com/images/avatar2/large/matthew.png",
-          tweet: "If you don't succeed, dust yourself off and try again.",
-          likes: 10
-        }
-      ]
+      body: "",
+      title: ""
     };
   }
 };

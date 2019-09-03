@@ -1,34 +1,32 @@
 <template>
   <div class="row">
     <div class="clear"></div>
-    <div class="card" v-for="(post) in getPosts.posts[0].payload" :key="post.index">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-4 image-post">
-            <img :src="post.urlToImage" />
-          </div>
-          <div class="col">
-            <h5 class="card-title">
-              <router-link :to="`/${post.author}`">{{ post.title }}</router-link>
-            </h5>
-            <div class="card-text">{{ post.description}}</div>
-            <div>
-              <span class="float-left">
-                Source:
-                <router-link to="/">{{ post.source.name || '' }}</router-link>
-              </span>
-              <span class="float-right">
-                <router-link :to="`./${post.author}/post/${post.author}`" class="card-link">View</router-link>
-                <button class="btn" v-on:click="changeLikes(post.id || 0)">Like</button>
-              </span>
+    <div class="row" v-if="posts.length > 1">
+      <div class="card" v-for="post in posts" :key="post.index">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title">
+                <router-link :to="`/${post.title || ''}`">{{ post.title }}</router-link>
+              </h5>
+              <div>
+                <router-link to="/">{{post.author.name}}</router-link>
+              </div>
+              <div class="card-text">{{ post.description}}</div>
+              <div>
+                <span class="float-left">
+                  Source:
+                  <router-link to="/">{{ post.title}}</router-link>
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- <div class="row">
-      <div class="no-content">No posts found!</div>
-    </div>-->
+    <div class="row" v-else>
+      <div class="no-content">Loading...</div>
+    </div>
   </div>
 </template>
 <script>
@@ -37,11 +35,11 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "posts",
   mounted() {
-    this.$store.dispatch("getBlogPosts");
+    this.$store.dispatch("GET_BLOG_POSTS");
   },
   computed: {
     posts() {
-      return this.$store.getters.getPosts;
+      return this.$store.getters.posts;
     },
     ...mapGetters(["getPosts"])
   },
@@ -61,14 +59,14 @@ export default {
   border-radius: 0 !important;
   border: 5px solid #c3c3c3;
   margin: auto 2%;
-  width: 96%;
+  width: 96% !important;
   position: relative;
 }
 .card::before {
   position: absolute;
   bottom: -8px;
   height: 4px;
-  background: #dbdbdb;
+  background: #c7c7c7;
   width: 96%;
   content: "";
   left: 2%;
@@ -77,7 +75,7 @@ export default {
   position: absolute;
   bottom: -12px;
   height: 4px;
-  background: #f0f0f0;
+  background: #dbdbdb;
   width: 92%;
   content: "";
   left: 3%;

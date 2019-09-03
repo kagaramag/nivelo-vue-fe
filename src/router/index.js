@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from './../store'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -11,19 +12,44 @@ export default new Router({
       component: () => import('@/components/public/home')
     },
     {
-      path: '/:handle/post/:id',
+      path: '/post/:slug',
       name: 'OnePost',
       component: () => import('@/components/public/posts/OnePost')
     },
     {
-      path: '/:handle',
+      path: '/register',
+      component: () => import('@/components/auth/register')
+    },
+    {
+      path: '/login',
+      component: () => import('@/components/auth/login')
+    },
+    {
+      path: '/profile',
       name: 'profile',
-      component: () => import('@/components/profile')
+      component: () => import('@/components/profile'),
+      meta: {
+        auth: true
+      }
     },
     {
       path: '*',
       component: () => import('@/components/public/notfound')
     }
   ],
-  mode: 'history'
+  mode: 'history',
+
 })
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.auth)) {
+    if (localStorage.getItem('isAuth') === "true") {
+      next()
+      return
+    } else {
+      next('/login')
+    }
+  } else {
+    next()
+  }
+})
+export default router

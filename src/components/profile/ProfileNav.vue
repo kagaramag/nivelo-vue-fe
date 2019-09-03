@@ -3,7 +3,6 @@
     <ul class="profile-nav">
       <li>
         <router-link to="/">Profile</router-link>
-        <router-link to="/">Comments</router-link>
         <router-link to="/">Settings</router-link>
         <router-link to="/">Logout</router-link>
       </li>

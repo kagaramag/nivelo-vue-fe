@@ -7,21 +7,12 @@
         </a>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
-          <ul class="navbar-items">
-            <li>
-              <router-link to="/">Home</router-link>
-            </li>
-            <li>
-              <router-link to="/">Forks</router-link>
-            </li>
-          </ul>
           <b-navbar-nav class="ml-auto">
             <b-nav-item-dropdown right>
               <template slot="button-content">
                 <span class="text-light">@djallas</span>
               </template>
               <router-link class="dropdown-item" to="/profile">Profile</router-link>
-              <router-link class="dropdown-item" to="#">Sign Out</router-link>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>

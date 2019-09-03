@@ -4,6 +4,7 @@ import axios from 'axios'
 
 
 import posts from './modules/posts'
+import users from './modules/users'
 
 Vue.use(Vuex, axios)
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
   getters: {},
   actions: {},
   modules: {
-    posts
+    posts,
+    users
   }
 })

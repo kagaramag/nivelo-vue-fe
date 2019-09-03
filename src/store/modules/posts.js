@@ -1,4 +1,5 @@
-import axios from "axios";
+
+import AxiosHelper from './../../helpers/AxiosHelper'
 /* eslint-disable space-before-function-paren */
 export default {
   // initial state
@@ -7,14 +8,14 @@ export default {
   },
   // getters
   getters: {
-    getPosts(state) {
-      return { ...state }
+    posts(state) {
+      return state.posts
     }
   },
 
   // mutations
   mutations: {
-    changeLikes: (state, payload) => {
+    SET_LIKES(state, payload) {
       state.posts.forEach(post => {
         if (post.id === payload) {
           post.likes += 1
@@ -22,24 +23,33 @@ export default {
       })
     },
     GET_BLOGS(state, payload) {
-      state.posts.push({ payload })
+      state.posts = [...state.posts, ...payload]
+    },
+    POST_BLOG(state, payload) {
+      state.posts = [payload, ...state.posts]
     }
   },
 
   // actions
   actions: {
     changeLikes: (context, payload) => {
-      context.commit('changeLikes', payload)
+      context.commit('SET_LIKES', payload)
     },
-    getBlogPosts: (context) => {
-      axios
-        .get("https://newsapi.org/v2/top-headlines?country=us&pageSize=15&apiKey=f73ab402dd914bb8bfc74c513c08dc6e")
-        .then(function (response) {
+    GET_BLOG_POSTS: (context) => {
+      AxiosHelper
+        .get('/articles?limit=3')
+        .then(response =>
           context.commit('GET_BLOGS', response.data.articles)
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        )
+        .catch(error => console.log(error))
+    },
+    CREATE_POST: (context, payload) => {
+      AxiosHelper
+        .post('/articles')
+        .then(response =>
+          context.commit('POST_BLOG', response.data.articles)
+        )
+        .catch(error => console.log(error))
     }
   }
 }
