@@ -1,5 +1,5 @@
 
-import AxiosHelper from './../../helpers/AxiosHelper'
+import AxiosHelper from '@/helpers/AxiosHelper'
 /* eslint-disable space-before-function-paren */
 export default {
   // initial state
@@ -23,6 +23,7 @@ export default {
       })
     },
     GET_BLOGS(state, payload) {
+      state.posts = '';
       state.posts = [...state.posts, ...payload]
     },
     POST_BLOG(state, payload) {

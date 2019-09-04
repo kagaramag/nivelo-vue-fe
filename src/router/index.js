@@ -9,25 +9,25 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/components/public/home')
+      component: () => import('../components/public/home')
     },
     {
       path: '/post/:slug',
       name: 'OnePost',
-      component: () => import('@/components/public/posts/OnePost')
+      component: () => import('../components/public/posts/OnePost')
     },
     {
       path: '/register',
-      component: () => import('@/components/auth/register')
+      component: () => import('../components/auth/register')
     },
     {
       path: '/login',
-      component: () => import('@/components/auth/login')
+      component: () => import('../components/auth/login')
     },
     {
       path: '/profile',
       name: 'profile',
-      component: () => import('@/components/profile'),
+      component: () => import('../components/profile'),
       meta: {
         auth: true
       }

@@ -1,6 +1,6 @@
 
-import AxiosHelper from './../../helpers/AxiosHelper'
-import router from '../../router';
+import AxiosHelper from '@/helpers/AxiosHelper'
+import router from '@/router';
 /* eslint-disable space-before-function-paren */
 export default {
   // initial state
@@ -41,6 +41,13 @@ export default {
     LOGIN_USER_FAILURE(state, payload) {
       state.profile.errors = [payload, ...state.profile.errors]
     },
+    LOGIN_USER_OUT(state) {
+      state.profile = "";
+      localStorage.user = undefined;
+      localStorage.isAuth = false;
+      localStorage.token = undefined;
+      router.push({ path: 'login' });
+    },
   },
 
   // actions
@@ -67,6 +74,9 @@ export default {
         .catch(error =>
           context.commit('LOGIN_USER_FAILURE', error)
         )
+    },
+    LOGOUT_USER: (context) => {
+      context.commit('LOGIN_USER_OUT')
     }
   }
 }

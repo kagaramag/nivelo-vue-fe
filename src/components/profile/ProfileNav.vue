@@ -2,16 +2,22 @@
   <div class="row">
     <ul class="profile-nav">
       <li>
-        <router-link to="/">Profile</router-link>
-        <router-link to="/">Settings</router-link>
-        <router-link to="/">Logout</router-link>
+        <router-link class="btn" to="/">Profile</router-link>
+        <button class="btn" @click.prevent @click="logout">Logout</button>
       </li>
     </ul>
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
-  name: "ProfileNav"
+  name: "ProfileNav",
+  methods: {
+    logout() {
+      this.LOGOUT_USER();
+    },
+    ...mapActions(["LOGOUT_USER"])
+  }
 };
 </script>
 

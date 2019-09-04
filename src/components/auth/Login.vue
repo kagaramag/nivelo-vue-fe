@@ -29,6 +29,11 @@
         <router-link :to="'/register'">Register</router-link>
       </form>
     </div>
+    <br />
+    <div class="text-center">
+      Go back
+      <router-link :to="'/'" class="bold p-1">Home</router-link>
+    </div>
   </div>
 </template>
 
