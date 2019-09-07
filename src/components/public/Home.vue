@@ -1,22 +1,28 @@
 <template>
-  <div class="home">
-    <div class="post-link">
-      <a href="./profile/#create">To create a post, go to your profile.</a>
-    </div>
-    <PostsComponent></PostsComponent>
+  <div>
+    <component :is="layout">
+      <CreatePostComponent></CreatePostComponent>
+      <PostsComponent></PostsComponent>
+    </component>
   </div>
 </template>
 
 <script>
 import PostsComponent from "./posts/PostsComponent";
-import CreatePostComponent from "./posts/CreatePostComponent";
+import CreatePostComponent from "./posts/ProfileCreatePost";
 import { mapActions, mapGetters } from "vuex";
+const default_layout = "default";
 export default {
   components: {
     PostsComponent,
     CreatePostComponent
   },
-  name: "home"
+  name: "home",
+  computed: {
+    layout() {
+      return (this.$route.meta.layout || default_layout) + "-layout";
+    }
+  }
 };
 </script>
 

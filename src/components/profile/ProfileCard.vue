@@ -8,7 +8,7 @@
           </div>
         </div>
         <div class="center-align">
-          <h3 class="capitalize bold">{{profile.lastName}} {{profile.firstName}}</h3>
+          <h3 class="capitalize bold">{{profile.firstName}}, {{profile.lastName}}</h3>
           <h5>{{profile.username?`@${profile.username}`:''}}</h5>
         </div>
         <profile-nav></profile-nav>

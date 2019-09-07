@@ -1,27 +1,25 @@
 <template>
   <div class="row">
-    <div class="clear"></div>
-    <div class="row" v-if="posts.length > 1">
-      <div class="card" v-for="post in posts" :key="post.index">
-        <div class="card-body">
-          <div class="row">
-            <div class="col">
-              <h5 class="card-title">
-                <router-link :to="`/${post.title || ''}`">{{ post.title }}</router-link>
-              </h5>
-              <div>
-                <router-link to="/">{{post.author.name}}</router-link>
-              </div>
-              <div class="card-text">{{ post.description}}</div>
-              <div>
-                <span class="float-left">
-                  Source:
-                  <router-link to="/">{{ post.title}}</router-link>
-                </span>
-              </div>
-            </div>
+    <div class="row" v-if="posts.length >= 1">
+      <div class="tutella-card" v-for="post in posts" :key="post.index">
+        <div class="bg-primary">
+          <div class="chip chip-md">
+            <img src="./../../../assets/images/profile_placeholder.png" alt="Contact Person" />
+            {{post.author.firstName}} {{post.author.lastName}}
           </div>
+          <span class="float-right timestamp">{{timestamp(post.createdAt)}}</span>
         </div>
+        <div class="clear"></div>
+        <h5 class="card-title">
+          <router-link :to="`/${post.title || ''}`">{{ post.title }}</router-link>
+        </h5>
+        <div class="card-text" v-if="post.body.length > 340">
+          <span v-html="post.body"></span>
+        </div>
+        <div class="card-text" v-else>
+          <span v-html="post.body"></span>
+        </div>
+        <div></div>
       </div>
     </div>
     <div class="row" v-else>
@@ -44,7 +42,26 @@ export default {
     ...mapGetters(["getPosts"])
   },
   methods: {
-    ...mapActions(["changeLikes"])
+    ...mapActions(["changeLikes"]),
+    timestamp(time) {
+      const months = [
+        "Jan",
+        "Feb",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "Aug",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec"
+      ];
+      const d = (time || "").split("-");
+      const created = `${months[d[1] - 1]} ${(d[2] || "").split("T")[0]}`;
+      return created;
+    }
   }
 };
 </script>
@@ -58,8 +75,8 @@ export default {
   margin-bottom: 20px !important;
   border-radius: 0 !important;
   border: 5px solid #c3c3c3;
-  margin: auto 2%;
-  width: 96% !important;
+  margin: auto 1%;
+  width: 98% !important;
   position: relative;
 }
 .card::before {

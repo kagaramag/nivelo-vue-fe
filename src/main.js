@@ -7,7 +7,11 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/css/styles.css'
+import Default from './layouts/Default.vue'
+import Minima from './layouts/Minima.vue'
 import store from './store'
+Vue.component('default-layout', Default)
+Vue.component('minima-layout', Minima)
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)

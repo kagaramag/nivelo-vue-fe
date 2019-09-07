@@ -1,21 +1,26 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-black shadow-4">
-      <div class="container">
-        <a class="navbar-brand text-light" href="/">
-          <b>TUTELLA</b>
+    <nav class="navbar fixed-top navbar-light bg-tutella">
+      <div class="container" style="padding:0 auto">
+        <a class="navbar-brand" href="/">
+          <img src="./../../assets/images/logo_nivelo_xs.svg" />
         </a>
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav class="ml-auto">
-            <router-link class="text-light" :to="'/profile'">Profile</router-link>
-          </b-navbar-nav>
-        </b-collapse>
+        <nav class="main-nav left">
+          <ul>
+            <!-- <li>
+              <router-link :to="'./profile'">Profile</router-link>
+            </li>-->
+          </ul>
+        </nav>
       </div>
     </nav>
   </div>
 </template>
-
+<script>
+export default {
+  props: ["profile"]
+};
+</script>
 <style scoped>
 .navbar-items {
   margin: 0;

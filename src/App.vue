@@ -1,36 +1,24 @@
 <!-- eslint-disable vue/no-v-html -->
 <template>
   <div id="app">
-    <div v-if="$route.path !== '/register' && $route.path !== '/login'">
-      <HeaderComponent></HeaderComponent>
-    </div>
     <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="content-wrapper">
-            <router-view />
-          </div>
-        </div>
-      </div>
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import HeaderComponent from "./components/commons/HeaderComponent";
-import SidebarComponent from "./components/commons/SidebarComponent";
 export default {
-  name: "App",
-  components: { HeaderComponent, SidebarComponent }
+  name: "App"
 };
 </script>
 <style scoped>
 .container {
-  margin-top: 50px;
+  margin-top: 75px;
 }
 .content-wrapper {
-  margin: 30px auto;
+  margin: 0px auto;
   display: block;
-  max-width: 760px;
+  max-width: 1100px;
 }
 </style>

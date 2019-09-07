@@ -6,7 +6,7 @@
         <div class="row" v-if="profile && profile.errors">
           <div
             class="alert alert-danger"
-            v-for="error of profile.errors[0]"
+            v-for="error in profile.errors"
             :key="error.index"
           >{{error}}</div>
         </div>
